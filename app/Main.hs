@@ -82,7 +82,7 @@ main = do
     then do
       putStrLn $ "No duplicate RCIs"
     else do
-      putStrLn $ "Duplicate RCIs: " <> intercalate
+      putStrLn $ "Duplicate RCIs:\n" <> intercalate
         "\n"
         (map (B8.unpack) duplicates)
       exitFailure
