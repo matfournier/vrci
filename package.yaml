@@ -1,0 +1,56 @@
+name:                vrci
+version:             0.1.0.0
+github:              "githubuser/vrci"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2019 Author name here"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/vrci#readme>
+
+ghc-options: -Wall
+default-extensions:
+  - OverloadedStrings
+
+dependencies:
+- base >= 4.7 && < 5
+- containers >= 0.5.11.0
+- text >= 1.2.3.1 && < 1.2.4
+- bytestring >= 0.10.8.2
+- pcre-heavy >= 1.0.0.2
+
+library:
+  source-dirs: src
+
+executables:
+  vrci-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -O2
+    - -with-rtsopts=-N
+    dependencies:
+    - vrci
+
+tests:
+  vrci-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - vrci
