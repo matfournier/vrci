@@ -27,7 +27,7 @@ gatherRci lines' = concat maybeRcis
  where
   getRcis = scan [re|[A-Z]{2,5}\d{4,10}|]
   maybeRcis =
-    map (\l -> let rcis = getRcis l in map (\m -> fst m) rcis) lines'
+    map ((map fst) . getRcis) lines'
 
 -- maps over each file to gather all the rcis and <> them into one big list
 -- returns: a list of RCIs that are duplicates
