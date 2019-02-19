@@ -34,9 +34,8 @@ gatherRci lines' = concat maybeRcis
 gatherRciFromScala :: [B8.ByteString] -> Set.Set B8.ByteString -> IO [B8.ByteString]
 gatherRciFromScala scalaFiles rcis = do
   scalaRcis <- mconcat <$> mapM gatherScalaRci scalaFiles
-  let dupes = filter ((>=2) . snd) $ frequency scalaRcis
-  let dupeRci = map fst dupes
-  return $ filter (flip Set.member $ rcis) dupeRci
+  let dupes =  map fst (filter ((>=2) . snd) $ frequency scalaRcis)
+  return $ filter (flip Set.member $ rcis) dupes
   where
      -- use a map to store list elements and their count and convert back to a list
     frequency :: (Ord a) => [a] -> [(a, Int)]
