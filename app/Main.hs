@@ -34,7 +34,8 @@ gatherRciDefs filePath = do
     then return $ FileWithRci filePath (gatherRci lines') True
     else return $ FileWithRci filePath (gatherTargetRci lines') False
   where fp = B8.unpack filePath
-        fileHasRci = B8.isInfixOf $ B8.pack "implements RootCause"
+        rciIdentifier = B8.pack "implements RootCause"
+        fileHasRci = B8.isInfixOf rciIdentifier
 
 -- takes in a List of lines and checks each one for an RCI code
 -- may return 0 to n matches per line, which get flattened in
